@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -13,7 +13,7 @@
           crossorigin="anonymous"/>
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style/style.css"/>
+    <link rel="stylesheet" href="../style/style.css"/>
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -21,6 +21,7 @@
     <!-- Custom JavaScript -->
     <script src="../scripts/navbar.js" type="text/javascript" defer></script>
     <script src="../scripts/footer.js" type="text/javascript" defer></script>
+    <script src="../scripts/register.js" type="text/javascript" defer></script>
 </head>
 
 <body>
@@ -31,46 +32,24 @@
 <div class="containerForm container-md d-flex justify-content-center align-items-center">
 
     <form action="" class="w-50">
-        <select name="salutation" id="salutation">
-            <option value="Anrede">Anrede...</option>
-            <option value="Herr">Herr</option>
-            <option value="Frau">Frau</option>
-        </select>
         <div class="usrName d-flex flex-column">
-            <input class="form-control" aria-label="Sizing example input" type="text" name="firstName"
+            <input class="form-control" id="firstName" aria-label="Sizing example input" type="text" name="firstName"
                    placeholder="Vorname..."/>
         </div>
-
         <div class="usrLastName">
-            <input class="form-control" type="text" name="lastName" placeholder="Nachname..."/>
+            <input class="form-control" id="lastName" type="text" name="lastName" placeholder="Nachname..."/>
         </div>
-        <div class="usrAdress">
-            <div class="adressNr d-flex flex-column flex-sm-row">
-                <div class="adressBox w-100">
-                    <input class="form-control" type="text" name="adress" placeholder="Adresse..."/>
-                </div>
-                <div class="nrBox w-25">
-                    <input class="form-control" type="number" name="adressNr" placeholder="Nr..."/>
-                </div>
-            </div>
+        <div class="usrUserName">
+            <input class="form-control" id="userName" type="text" name="userName" placeholder="Benutzername..."/>
         </div>
-        <div class="zipCity">
-            <div class="usrAdress--zip">
-                <input class="form-control" type="text" name="usrZip" placeholder="PLZ..."/>
-            </div>
-
-            <div class="usrCity">
-                <input class="form-control" type="text" name="city" placeholder="Ort..."/>
-            </div>
-
-            <div class="mail">
-                <input class="form-control" type="email" name="mailAdress" placeholder="E-mail..."/>
-            </div>
-
-            <br>
-            <button type="button" class="btn btnColor btn-sm">Absenden</button>
-
+        <div class="password">
+            <input class="form-control" id="password" type="text" name="password" placeholder="Password..."/>
         </div>
+        <div class="email">
+            <input class="form-control" id="email" type="text" name="email" placeholder="Email-Adresse..."/>
+        </div>
+        <br>
+        <button id="registerButton" type="button" class="btn btnColor btn-sm">Absenden</button>
     </form>
 </div>
 <footer>

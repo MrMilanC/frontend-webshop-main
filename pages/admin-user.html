@@ -23,7 +23,7 @@
     <!-- Custom JavaScript -->
     <script src="../scripts/navbar-logged-in.js" type="text/javascript" defer></script>
     <script src="../scripts/footer.js" type="text/javascript" defer></script>
-    <script src="../scripts/products.js" type="text/javascript" defer></script>
+    <script src="../scripts/admin-user.js" type="text/javascript" defer></script>
 </head>
 
 <body>
@@ -31,24 +31,46 @@
     <div id="navbar-container"></div>
 </header>
 
-<h1>Produkte</h1>
-<a href="../pages/shopping-cart.html"><button type="button">Warenkorb</button></a>
+<h1>User-Management</h1>
 
-<!-- Table to display products -->
+<!-- Form to add a new product -->
+<!--<form id="addUserForm">
+    <label for="userId">ID:</label>
+    <input type="text" id="userId" required>
+
+    <label for="userFirstName">Vorname:</label>
+    <input type="text" id="userFirstName" required>
+
+    <label for="userLastName">Nachname:</label>
+    <input type="text" id="userLastName" required>
+
+    <label for="userAddress">Adresse:</label>
+    <input type="number" id="userAddress" step="0.01" required>
+
+    <label for="userCity">Ort:</label>
+    <input type="number" id="userCity" step="0.01" required>
+
+    <label for="userEmail">Email:</label>
+    <input type="number" id="userEmail" step="0.01" required>
+
+    <button type="submit">User hinzufügen</button>
+</form>-->
+
+<a href="../pages/admin-user-add.html"><button type="button">Benutzer hinzufügen</button></a>
+
+<!-- Table to display users -->
 <table>
     <thead>
     <tr>
-        <th>Produkt ID</th>
-        <th>Produktname</th>
-        <th>Beschreibung</th>
-        <th>Preis</th>
-        <th>Kategorie</th>
-        <th>Menge</th>
-        <th>Bild</th>
-        <th scope="col">Produktdetails</th>
+        <th>ID</th>
+        <th>Vorname</th>
+        <th>Nachname</th>
+        <th>Role</th>
+        <th>Username</th>
+        <th>Email</th>
     </tr>
     </thead>
-    <tbody id="productTableBody">
+    <tbody id="userTableBody">
     <!-- Product rows will be added here dynamically -->
     </tbody>
 </table>

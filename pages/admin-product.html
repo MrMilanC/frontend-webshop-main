@@ -23,7 +23,7 @@
     <!-- Custom JavaScript -->
     <script src="../scripts/navbar-logged-in.js" type="text/javascript" defer></script>
     <script src="../scripts/footer.js" type="text/javascript" defer></script>
-    <script src="../scripts/products.js" type="text/javascript" defer></script>
+    <script src="../scripts/admin-product.js" type="text/javascript" defer></script>
 </head>
 
 <body>
@@ -31,8 +31,9 @@
     <div id="navbar-container"></div>
 </header>
 
-<h1>Produkte</h1>
-<a href="../pages/shopping-cart.html"><button type="button">Warenkorb</button></a>
+<h1>Produkt-Management</h1>
+
+<a href="../pages/admin-product-add.html"><button type="button">Produkt hinzufügen</button></a>
 
 <!-- Table to display products -->
 <table>
@@ -46,6 +47,8 @@
         <th>Menge</th>
         <th>Bild</th>
         <th scope="col">Produktdetails</th>
+        <th scope="col">Delete</th>
+        <th scope="col">Update</th>
     </tr>
     </thead>
     <tbody id="productTableBody">

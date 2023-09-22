@@ -21,6 +21,7 @@
     <!-- Custom JavaScript -->
     <script src="../scripts/navbar.js" type="text/javascript" defer></script>
     <script src="../scripts/footer.js" type="text/javascript" defer></script>
+    <script src="../scripts/products-home.js" type="text/javascript" defer></script>
 </head>
 
 <body>
@@ -28,44 +29,32 @@
     <div id="navbar-container"></div>
 </header>
 
-<div class="container">
-    <div class="row row-cols-1 row-cols-md-3">
-        <div class="col">
-            <div class="card">
-                <img src="../img/saft.jpg" alt="Saft" style="width:100%">
-                <h1>Bio Säfte</h1>
-                <p>Some text...</p>
-                <p>
-                    <button>Add to Cart</button>
-                </p>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="../img/gemuese.jpg" alt="Gemuese" style="width:100%">
-                <h1>Gemüse</h1>
-                <p>Some text...</p>
-                <p>
-                    <button>Add to Cart</button>
-                </p>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="../img/eier.jpg" alt="eier" style="width:100%">
-                <h1>Frische Eier</h1>
-                <p>Some text...</p>
-                <p>
-                    <button>Add to Cart</button>
-                </p>
-            </div>
-        </div>
+<div class="container text-center d-flex align-items-center justify-content-center h-40">
+    <div class="row row-cols-auto container-lg appendDiv d-flex justify-content-between align-items-center">
+        <!-------JS fill content categories------>
     </div>
 </div>
 
+<!-------JS fill content product list------>
+<div class="container text-center d-flex align-items-center justify-content-center h-40">
+
+    <table>
+        <tbody id="productTableBodyHome">
+        <!-- Product rows will be added here dynamically -->
+        </tbody>
+    </table>
+
+</div>
 <footer>
     <div id="footer-container"></div>
 </footer>
+<script type="module" src="../scripts/index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+        integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+        crossorigin="anonymous"></script>
 
 </body>
 </html>

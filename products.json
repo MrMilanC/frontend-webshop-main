@@ -1,0 +1,29 @@
+
+[
+    {
+        "title": "Säfte",
+        "description": "frisch gepresst",
+        "image":"https://www.bio-austria.at/app/uploads/2020/10/vegane-und-vegetarische-spezialitacc88ten-aus-landwirtschaftlichen-rohstoffenpixabay-congerdesign.jpg",
+        "categoryId":1
+    },
+    
+    {
+        "title": "Gemüse",
+        "description": "von uns geerntet",
+        "image":"https://www.gutekueche.at/storage/media/recipe-category/7504/conv/bio-rezepte-default.jpg",
+        "categoryId":2
+    },
+    {
+        "title": "Obst",
+        "description": "Familiengarten",
+        "image":"https://www.truebenecker.de/wp-content/uploads/2019/02/Obstkorb-first-class-kaufen.jpg",
+        "categoryId":3
+    },
+    {
+        "title": "Tierprodukte",
+        "description": "direkt vom Hof",
+        "image":"https://www.vollkornbaeckerei-waldherr.at/files/hg_b__05s_04_waldherr_fotoshoot1-2_0100_brotkiste_fin.jpg",
+        "categoryId":4
+    }
+]
+  

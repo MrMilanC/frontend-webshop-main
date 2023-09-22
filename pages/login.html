@@ -23,6 +23,7 @@
     <!-- Custom JavaScript -->
     <script src="../scripts/navbar.js" type="text/javascript" defer></script>
     <script src="../scripts/footer.js" type="text/javascript" defer></script>
+    <script src="../scripts/login.js" type="text/javascript" defer></script>
 </head>
 
 <body>
@@ -35,34 +36,19 @@
         <form>
             <!-- Email input -->
             <div class="form-outline position-relative p-3">
-                <label class="form-label lableStyle m-0 position-absolute" for="form2Example1">E-mail</label>
-                <input type="email" id="form2Example1" class="form-control" />
+                <label class="form-label lableStyle m-0 position-absolute" for="username">Username</label>
+                <input type="email" id="username" class="form-control" />
             </div>
 
             <!-- Password input -->
             <div class="form-outline position-relative p-3">
-                <label class="form-label lableStyle position-absolute" for="form2Example2">Password</label>
-                <input type="password" id="form2Example2" class="form-control" />
-            </div>
-
-            <!-- 2 column grid layout for inline styling -->
-            <div class="row mb-4">
-                <div class="col d-flex justify-content-center">
-                    <!-- Checkbox -->
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
-                        <label class="form-check-label" for="form2Example31"> Remember me </label>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <a href="#!">Forgot password?</a>
-                </div>
+                <label class="form-label lableStyle position-absolute" for="password">Password</label>
+                <input type="password" id="password" class="form-control" />
             </div>
 
             <!-- Submit button -->
             <div class="submitWrapper w-100 d-flex justify-content-center align-items-center">
-                <button type="button" class="btn btnColor btn-block logBtn p-2">Sign in</button>
+                <button id="btn-login" type="button" class="btn btnColor btn-block logBtn p-2">Sign in</button>
             </div>
         </form>
     </div>
