@@ -56,18 +56,18 @@ function displayUsers(data) {
 
 $(document).ready(function () {
 
-    // var authToken = sessionStorage.getItem("token");
-    // console.log("AuthToken:", authToken);
+    var authToken = sessionStorage.getItem("token");
+    console.log("AuthToken:", authToken);
 
-    // Function to display users in the table
-  //  if (authToken) {
+    //Function to display users in the table
+   if (authToken) {
         $.ajax({
             url: "http://localhost:8080/admin/users/view",
             method: "GET",
             dataType: "json",
-            // headers: {
-            //     Authorization: "Bearer " + authToken
-            // },
+            headers: {
+                Authorization: "Bearer " + authToken
+            },
             //cors: true,
             success: function (data) {
                 displayUsers(data)
@@ -76,10 +76,10 @@ $(document).ready(function () {
                 console.error(error);
             }
         });
-    // } else {
-    //     // Handle the case where authToken is not found in sessionStorage
-    //     console.error("Authentication token not found in sessionStorage.");
-    // }
+    } else {
+        // Handle the case where authToken is not found in sessionStorage
+        console.error("Authentication token not found in sessionStorage.");
+    }
 });
 
 

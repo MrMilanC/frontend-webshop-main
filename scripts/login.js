@@ -33,7 +33,7 @@ $(document).ready(function () {
                         $(".navbar-default").hide();
                         $(".navbar-logged-in").show();
                     });
-                    //window.location.href = '../pages/index.html';
+                    window.location.href = '../pages/products.html';
                 } else {
                     console.log("Login failed");
                     alert("Invalid information");

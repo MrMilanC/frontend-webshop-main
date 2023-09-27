@@ -18,50 +18,95 @@
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jwt-decode/3.1.2/jwt-decode.min.js"></script>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jsonwebtoken/9.0.2/decode.min.js" integrity="sha512-GpSRYoyqsNcWKPthJkC3EuuxAfzKu8eJgWU58GYH6pvRe1IaRjIJmY6a7eTLIfux4vsy0tkuQ/WgAxtR66siUw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsonwebtoken/8.0.1/decode.min.js"></script>-->
+
+
+
 </head>
 
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="index.html"><img src="../img/logo.png"/></a>
-        <h2 class="m-0"><span class="brand ">Biohof</span> | <span class="brand ">Wiesenblüte</span></h2>
+   <div class="container-fluid">
+       <a class="navbar-brand" href="index.html"><img src="../img/logo.png"/></a>
+       <h2 class="m-0"><span class="brand ">Biohof</span> | <span class="brand ">Wiesenblüte</span></h2>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+               aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+           <span class="navbar-toggler-icon"></span>
+       </button>
 
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="../pages/index.html">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../pages/products.html">Angebot</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../pages/admin-product.html">Admin-Produkte</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../pages/admin-user.html">Admin-User</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" id="logout-link">Logout</a>
-                </li>
-            </ul>
-        </div>
-    </div>
+       <div class="collapse navbar-collapse" id="navbarNav">
+           <ul class="navbar-nav ms-auto">
+               <li class="nav-item">
+                   <a class="nav-link" href="../pages/index.html">Home</a>
+               </li>
+               <li class="nav-item">
+                   <a class="nav-link" href="#" id="admin-link">Admin-Zone</a>
+               </li>
+               <li class="nav-item">
+                   <a class="nav-link" href="#" id="logout-link">Logout</a>
+               </li>
+           </ul>
+       </div>
+   </div>
 </nav>
 <script>
-    // A click event listener to the "Logout" link
-    document.getElementById("logout-link").addEventListener("click", function () {
-        if (sessionStorage.getItem("token") !== null) {
-            sessionStorage.removeItem("token");
-            window.location.href = "../pages/index.html";
-            console.log("You're logged out");
-        } else {
-            console.log("The 'token' item does not exist in sessionStorage.");
-        }
-    });
+   // A click event listener to the "Logout" link
+   document.getElementById("logout-link").addEventListener("click", function () {
+       if (sessionStorage.getItem("token") !== null) {
+           sessionStorage.removeItem("token");
+           window.location.href = "../pages/index.html";
+           console.log("You're logged out");
+       } else {
+           console.log("The 'token' item does not exist in sessionStorage.");
+       }
+   });
+</script>
+
+<script>
+   // A click event listener to the "Logout" link
+   document.getElementById("admin-link").addEventListener("click", function () {
+
+       //var userRole = JSON.parse(sessionStorage.getItem("token"));
+
+       // Assuming you have the JWT as a string
+       //var tempToken = JSON.parse(sessionStorage.getItem("token"));
+
+       var tempToken = sessionStorage.getItem("token");
+       var tokens = tempToken.split(".");
+
+//       console.log(JSON.parse(atob(tokens[0])));
+//       console.log(JSON.parse(atob(tokens[1])));
+       var userRole = (atob(tokens[1]));
+
+// Decode the JWT
+//       var decodedToken = jwt_decode(tempToken);
+
+// Access the claims, including the role
+//       var userRole = decodedToken.role;
+
+// Now, 'userRole' contains the role extracted from the JWT
+ //      console.log(`User role: ${userRole}`);
+
+           // Überprüfen, ob der Benutzer ein Administrator ist
+       if (userRole.includes("ROLE_ADMIN")) {
+           // Admin-Link verstecken
+           window.location.href = "../pages/admin-home.html";
+       } else {
+           // Admin-Link anzeigen
+           console.log("Kein Admin");
+       }
+   });
+
+
+
+
+
 </script>
 </body>
+
+
