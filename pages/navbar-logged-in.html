@@ -17,15 +17,6 @@
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jwt-decode/3.1.2/jwt-decode.min.js"></script>
-
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/jsonwebtoken/9.0.2/decode.min.js" integrity="sha512-GpSRYoyqsNcWKPthJkC3EuuxAfzKu8eJgWU58GYH6pvRe1IaRjIJmY6a7eTLIfux4vsy0tkuQ/WgAxtR66siUw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsonwebtoken/8.0.1/decode.min.js"></script>-->
-
-
-
 </head>
 
 <body>
@@ -54,6 +45,7 @@
        </div>
    </div>
 </nav>
+
 <script>
    // A click event listener to the "Logout" link
    document.getElementById("logout-link").addEventListener("click", function () {
@@ -68,44 +60,20 @@
 </script>
 
 <script>
-   // A click event listener to the "Logout" link
+   // A click event listener to the "Admin-Zone" link
    document.getElementById("admin-link").addEventListener("click", function () {
-
-       //var userRole = JSON.parse(sessionStorage.getItem("token"));
-
-       // Assuming you have the JWT as a string
-       //var tempToken = JSON.parse(sessionStorage.getItem("token"));
-
        var tempToken = sessionStorage.getItem("token");
        var tokens = tempToken.split(".");
-
-//       console.log(JSON.parse(atob(tokens[0])));
-//       console.log(JSON.parse(atob(tokens[1])));
        var userRole = (atob(tokens[1]));
 
-// Decode the JWT
-//       var decodedToken = jwt_decode(tempToken);
-
-// Access the claims, including the role
-//       var userRole = decodedToken.role;
-
-// Now, 'userRole' contains the role extracted from the JWT
- //      console.log(`User role: ${userRole}`);
-
-           // Überprüfen, ob der Benutzer ein Administrator ist
+       // Überprüfen, ob der Benutzer ein Administrator ist
        if (userRole.includes("ROLE_ADMIN")) {
-           // Admin-Link verstecken
            window.location.href = "../pages/admin-home.html";
        } else {
-           // Admin-Link anzeigen
+           alert("Sorry, du bist kein Admin!");
            console.log("Kein Admin");
        }
    });
-
-
-
-
-
 </script>
 </body>
 
