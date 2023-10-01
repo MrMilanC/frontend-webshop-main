@@ -141,3 +141,16 @@ table td, table th {
 }
 
 
+/* CSS for the container */
+.overflow-container {
+    max-height: 800px; /* Adjust the maximum height as needed */
+    overflow: hidden;
+    position: static;
+}
+
+/* CSS for the content with scrolling */
+.overflow-content {
+    overflow-y: auto;
+    height: 70%;
+    padding-right: 40px; /* Add space for vertical scrollbar */
+}
