@@ -22,7 +22,7 @@ function displayProducts(data) {
                     e.preventDefault();
                     var productId = product.productId;
                     $.ajax({
-                        url: "http://localhost:8080/admin/products/view/" + productId,
+                        url: "http://localhost:8080/products/view/" + productId,
                         method: "GET",
                         dataType: "json",
                         success: function (data) {

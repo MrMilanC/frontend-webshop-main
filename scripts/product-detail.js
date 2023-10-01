@@ -1,26 +1,43 @@
 function displayProducts(data) {
-    var productTableBody = $("#productTableBodyDetail");
+    var productTableBody = $("#productTableBodyDetails");
     productTableBody.empty(); // Clear existing rows
-    var dataToken = sessionStorage.getItem("productId");
+    //var dataToken = sessionStorage.getItem("productId");
+    console.log(data);
 
-    dataToken.forEach(function (product) {
+    if (data) {
         var row = "<tr>";
-        row += "<td>" + product.productId + "</td>";
-        row += "<td>" + product.productName + "</td>";
-        row += "<td>" + product.description + "</td>";
-        row += "<td>$" + product.price.toFixed(2) + "</td>";
-        row += "<td>" + product.category + "</td>";
-        row += "<td>" + product.quantity + "</td>";
-        row += '<td><img src="' + product.jpgURL + '" height="100px" width="100px" style="border:5px solid black"></td>';
+        row += "<td>" + (data.productId || "") + "</td>";
+        row += "<td>" + (data.productName || "") + "</td>";
+        row += "<td>" + (data.description || "") + "</td>";
+        row += "<td>$" + (data.price ? data.price.toFixed(2) : "") + "</td>";
+        row += "<td>" + (data.category || "") + "</td>";
+        row += "<td>" + (data.quantity || "") + "</td>";
+        row += '<td><img src="' + (data.jpgURL || "") + '" height="100px" width="100px" style="border:5px solid black"></td>';
         row += "</tr>";
+
         productTableBody.append(row);
-    });
+    }
+
+
+    // data.forEach(function (product) {
+    //     var row = "<tr>";
+    //     row += "<td>" + product.productId + "</td>";
+    //     row += "<td>" + product.productName + "</td>";
+    //     row += "<td>" + product.description + "</td>";
+    //     row += "<td>$" + product.price.toFixed(2) + "</td>";
+    //     row += "<td>" + product.category + "</td>";
+    //     row += "<td>" + product.quantity + "</td>";
+    //     row += '<td><img src="' + product.jpgURL + '" height="100px" width="100px" style="border:5px solid black"></td>';
+    //     row += "</tr>";
+    //     productTableBody.append(row);
+    // });
 }
 
 $(document).ready(function () {
     var dataToken = sessionStorage.getItem("productId");
+    console.log(dataToken);
         $.ajax({
-            url: "http://localhost:8080/products/view" + dataToken,
+            url: "http://localhost:8080/products/view/" + dataToken,
             method: "GET",
             dataType: "json",
             success: function (data) {

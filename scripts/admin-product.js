@@ -1,5 +1,5 @@
 function displayProducts(data) {
-    var productTableBody = $("#productTableBody");
+    var productTableBody = $("#productTableBodyAdmin");
     productTableBody.empty(); // Clear existing rows
 
     data.forEach(function (product) {
