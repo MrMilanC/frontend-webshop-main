@@ -23,47 +23,40 @@
     <!-- Custom JavaScript -->
     <script src="../scripts/navbar-logged-in.js" type="text/javascript" defer></script>
     <script src="../scripts/footer.js" type="text/javascript" defer></script>
-    <script src="../scripts/admin-product-add.js" type="text/javascript" defer></script>
+    <script src="../scripts/admin-user-add.js" type="text/javascript" defer></script>
 </head>
 <body>
 <header>
     <div id="navbar-container"></div>
 </header>
-<div class="container">
-    <h3>Benutzer eintragen</h3>
-    <form id="productForm" enctype="multipart/form-data">
-        <div class="row">
-            <div class="col-sm-5">
-                <input type="hidden" id="id" name="id">
-                <div class="form-group">
-                    <label for="firstName">Vorname</label>
-                    <input type="text" class="form-control" required id="firstName" placeholder="Vornamen eintragen">
-                </div>
-                <div class="form-group">
-                    <label for="lastName">Nachname</label>
-                    <input type="text" class="form-control" required id="lastName" placeholder="Nachnamen eintragen">
-                </div>
-                <div class="form-group">
-                    <label for="userName">Benutzername</label>
-                    <input type="text" class="form-control" required id="userName"
-                           placeholder="Benutzernamen eintragen">
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="text" class="form-control" required id="email" placeholder="Email eintragen">
-                </div>
-                <div class="form-group">
-                    <label for="password">Passwort</label>
-                    <input type="text" class="form-control" required id="password" placeholder="Passwort eintragen">
-                </div>
-                <div class="form-group">
-                    <label for="role">Rolle</label>
-                    <input type="text" class="form-control" required id="role" placeholder="User oder Admin">
-                </div>
-                <button type="button" id="submitUser" class="btn btn-primary">Speichern</button>
-            </div>
+<div class="containerForm container-md d-flex justify-content-center align-items-center">
+
+    <form action="" class="w-50">
+        <div class="usrName d-flex flex-column">
+            <input class="form-control" id="firstName" aria-label="Sizing example input" type="text" name="firstName"
+                   placeholder="Vorname..."/>
         </div>
+        <div class="usrLastName">
+            <input class="form-control" id="lastName" type="text" name="lastName" placeholder="Nachname..."/>
+        </div>
+        <div class="usrUserName">
+            <input class="form-control" id="userName" type="text" name="userName" placeholder="Benutzername..."/>
+        </div>
+        <div class="password">
+            <input class="form-control" id="password" type="text" name="password" placeholder="Password..."/>
+        </div>
+        <div class="email">
+            <input class="form-control" id="email" type="text" name="email" placeholder="Email-Adresse..."/>
+        </div>
+        <div class="role">
+            <input class="form-control" id="role" type="text" name="role" placeholder="Rolle..."/>
+        </div>
+        <br>
+        <button id="registerButton" type="button" class="btn btnColor btn-sm">Absenden</button>
     </form>
 </div>
+<footer>
+    <div id="footer-container"></div>
+</footer>
 </body>
 </html>

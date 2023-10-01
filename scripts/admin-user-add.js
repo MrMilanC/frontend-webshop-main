@@ -9,6 +9,7 @@ $(document).ready(function () {
         var userName = $("#userName").val();
         var password = $("#password").val();
         var email = $("#email").val();
+        var role = $("#role").val();
 
         // Create a JSON object with the form data
         var userData = {
@@ -16,13 +17,14 @@ $(document).ready(function () {
             lastName: lastName,
             username: userName,
             password: password,
-            email: email
+            email: email,
+            role: role
         };
 
         // Send the POST request to the Java server
         $.ajax({
             type: "POST",
-            url: "http://localhost:8080/register/create",
+            url: "http://localhost:8080/admin/users/create",
             data: JSON.stringify(userData), // Convert data to JSON
             contentType: "application/json; charset=utf-8",
             dataType: "json",

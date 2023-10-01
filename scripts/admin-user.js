@@ -11,6 +11,7 @@ function displayUsers(data) {
         row += "<td>" + user.username + "</td>";
         row += "<td>" + user.email + "</td>";
         row += "</tr>";
+        console.log(user.id);
 
         var deleteUser = $('<td>').append(
             $('<a>').attr('href', '#' + user.id)
@@ -18,7 +19,7 @@ function displayUsers(data) {
                 .text('Delete')
                 .click(function (e) {
                     e.preventDefault();
-                    var userId = user.Id;
+                    var userId = user.id;
                     console.log(userId)// REMOVE
                     $.ajax({
                         url: "http://localhost:8080/admin/users/remove/" + userId,
