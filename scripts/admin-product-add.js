@@ -16,26 +16,6 @@ $(".custom-file-input").on("change", function () {
     var fileName = $(this).val().split("\\").pop();
     $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
 });
-/*
-// Ajax request to populate categories
-$.ajax({
-    url: "http://localhost:8080/admin/products/add",
-    type: 'GET',
-    dataType: 'json',
-    success: function (data) {
-        var categorySelect = $('#category');
-        categorySelect.empty();
-        $.each(data, function (index, category) {
-            categorySelect.append($('<option>', {
-                value: category.id,
-                text: category.name
-            }));
-        });
-    },
-    error: function (error) {
-        console.log(error);
-    }
-});*/
 
 // Ajax request to submit the form
 $('#submitProduct').click(function () {
