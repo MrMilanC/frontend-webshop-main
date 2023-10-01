@@ -20,7 +20,7 @@ function displayProducts(data) {
                     e.preventDefault();
                     var productId = product.productId;
                     $.ajax({
-                        url: "http://localhost:8080/admin/products/view/"+ productId,
+                        url: "http://localhost:8080/admin/products/view/" + productId,
                         method: "GET",
                         dataType: "json",
                         success: function (data) {
@@ -60,7 +60,7 @@ function displayProducts(data) {
                     e.preventDefault();
                     var productId = product.productId;
                     $.ajax({
-                        url: "http://localhost:8080/admin/products/update/"+ productId,
+                        url: "http://localhost:8080/admin/products/update/" + productId,
                         method: "UPDATE",
                         dataType: "json",
                         success: window.location.href = "admin-product-add.html",

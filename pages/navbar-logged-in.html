@@ -21,59 +21,59 @@
 
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-   <div class="container-fluid">
-       <a class="navbar-brand" href="index.html"><img src="../img/logo.png"/></a>
-       <h2 class="m-0"><span class="brand ">Biohof</span> | <span class="brand ">Wiesenblüte</span></h2>
+    <div class="container-fluid">
+        <a class="navbar-brand" href="index.html"><img src="../img/logo.png"/></a>
+        <h2 class="m-0"><span class="brand ">Biohof</span> | <span class="brand ">Wiesenblüte</span></h2>
 
-       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-               aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-           <span class="navbar-toggler-icon"></span>
-       </button>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-       <div class="collapse navbar-collapse" id="navbarNav">
-           <ul class="navbar-nav ms-auto">
-               <li class="nav-item">
-                   <a class="nav-link" href="../pages/index.html">Home</a>
-               </li>
-               <li class="nav-item">
-                   <a class="nav-link" href="#" id="admin-link">Admin-Zone</a>
-               </li>
-               <li class="nav-item">
-                   <a class="nav-link" href="#" id="logout-link">Logout</a>
-               </li>
-           </ul>
-       </div>
-   </div>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="../pages/index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="admin-link">Admin-Zone</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="logout-link">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 </nav>
 
 <script>
-   // A click event listener to the "Logout" link
-   document.getElementById("logout-link").addEventListener("click", function () {
-       if (sessionStorage.getItem("token") !== null) {
-           sessionStorage.removeItem("token");
-           window.location.href = "../pages/index.html";
-           console.log("You're logged out");
-       } else {
-           console.log("The 'token' item does not exist in sessionStorage.");
-       }
-   });
+    // A click event listener to the "Logout" link
+    document.getElementById("logout-link").addEventListener("click", function () {
+        if (sessionStorage.getItem("token") !== null) {
+            sessionStorage.removeItem("token");
+            window.location.href = "../pages/index.html";
+            console.log("You're logged out");
+        } else {
+            console.log("The 'token' item does not exist in sessionStorage.");
+        }
+    });
 </script>
 
 <script>
-   // A click event listener to the "Admin-Zone" link
-   document.getElementById("admin-link").addEventListener("click", function () {
-       var tempToken = sessionStorage.getItem("token");
-       var tokens = tempToken.split(".");
-       var userRole = (atob(tokens[1]));
+    // A click event listener to the "Admin-Zone" link
+    document.getElementById("admin-link").addEventListener("click", function () {
+        var tempToken = sessionStorage.getItem("token");
+        var tokens = tempToken.split(".");
+        var userRole = (atob(tokens[1]));
 
-       // Überprüfen, ob der Benutzer ein Administrator ist
-       if (userRole.includes("ROLE_ADMIN")) {
-           window.location.href = "../pages/admin-home.html";
-       } else {
-           alert("Sorry, du bist kein Admin!");
-           console.log("Kein Admin");
-       }
-   });
+        // Überprüfen, ob der Benutzer ein Administrator ist
+        if (userRole.includes("ROLE_ADMIN")) {
+            window.location.href = "../pages/admin-home.html";
+        } else {
+            alert("Sorry, du bist kein Admin!");
+            console.log("Kein Admin");
+        }
+    });
 </script>
 </body>
 
