@@ -33,12 +33,15 @@ $(document).ready(function () {
                         $(".navbar-default").hide();
                         $(".navbar-logged-in").show();
                     });
+
+                    // Add the fixed-bottom class to the footer
+                    $("#footer").addClass("fixed-bottom");
+
                     window.location.href = '../pages/products.html';
                 } else {
                     console.log("Login failed");
                     alert("Invalid information");
                 }
-
             })
             .fail(function (xhr, textStatus, error) {
                 console.error("AJAX request failed:", error);
@@ -46,4 +49,3 @@ $(document).ready(function () {
             });
     });
 });
-
