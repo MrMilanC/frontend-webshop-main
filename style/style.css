@@ -31,11 +31,6 @@ a {
     text-align: center; /* optional, um den Text im Container zu zentrieren */
 }
 
-.custom-footer {
-    background-color: #45ad65; /* Dunkelgrüner Hintergrund */
-    color: #fff; /* Weiße Schriftfarbe */
-}
-
 
 /* Stile für Produktcontainer */
 .productcont {

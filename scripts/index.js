@@ -8,7 +8,7 @@ const details = products.map((item, index) => {
       <img src=${item.image} class="card-img-top object-fit w-100" style="width:250px; height:150px" alt="...">
       <h5 class="card-title">${item.title}</h5>
       <p class="card-text">${item.description}</p>
-      <a href="#" class="btn btn-primary" data-index="${index}">Anzeigen</a>
+      <a href="#" class="btn btn-success" data-index="${index}">Anzeigen</a>
     </div>
   </div>`
     )
@@ -23,7 +23,7 @@ for (let i = 0; i < products.length; i++) {
 }
 
 // Adds event listener to all "Anzeigen" buttons
-const anzeigenButtons = document.querySelectorAll(".btn.btn-primary");
+const anzeigenButtons = document.querySelectorAll(".btn.btn-success");
 anzeigenButtons.forEach((button) => {
     button.addEventListener("click", function (event) {
         event.preventDefault();
