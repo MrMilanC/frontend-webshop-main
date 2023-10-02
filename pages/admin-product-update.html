@@ -23,50 +23,50 @@
     <!-- Custom JavaScript -->
     <script src="../scripts/navbar-logged-in.js" type="text/javascript" defer></script>
     <script src="../scripts/footer.js" type="text/javascript" defer></script>
-    <script src="../scripts/admin-product-add.js" type="text/javascript" defer></script>
+    <script src="../scripts/admin-product-update.js" type="text/javascript" defer></script>
 </head>
 <body>
 <header>
     <div id="navbar-container"></div>
 </header>
 <div class="container">
-    <h3>Produkt eintragen</h3>
-    <form id="productForm" enctype="multipart/form-data">
+    <h3>Produktdaten ändern</h3>
+    <form id="productFormUpdate" enctype="multipart/form-data">
         <div class="row">
             <div class="col-sm-5">
-                <input type="hidden" id="id" name="id">
+                <input type="hidden" id="idUpdate" name="id">
                 <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" class="form-control" required id="name" placeholder="Namen eintragen">
+                    <label for="nameUpdate">Name</label>
+                    <input type="text" class="form-control" required id="nameUpdate" placeholder="Namen eintragen">
                 </div>
                 <div class="form-group">
-                    <label for="category">Kategorie waehlen</label>
-                    <input type="text" class="form-control" required id="category" placeholder="Kategorie eintragen">
+                    <label for="categoryUpdate">Kategorie waehlen</label>
+                    <input type="text" class="form-control" required id="categoryUpdate" placeholder="Kategorie eintragen">
                 </div>
                 <div class="form-group">
-                    <label for="price">Preis</label>
-                    <input type="number" class="form-control" required id="price" placeholder="Preis">
+                    <label for="priceUpdate">Preis</label>
+                    <input type="number" class="form-control" required id="priceUpdate" placeholder="Preis">
                 </div>
                 <div class="form-group">
-                    <label for="quantity">Menge</label>
-                    <input type="number" class="form-control" required id="quantity" placeholder="Menge">
+                    <label for="quantityUpdate">Menge</label>
+                    <input type="number" class="form-control" required id="quantityUpdate" placeholder="Menge">
                 </div>
                 <div class="form-group">
-                    <label for="description">Produktbeschreibung</label>
-                    <textarea class="form-control" rows="5" id="description"></textarea>
+                    <label for="descriptionUpdate">Produktbeschreibung</label>
+                    <textarea class="form-control" rows="5" id="descriptionUpdate"></textarea>
                 </div>
             </div>
             <div class="col-sm-5">
                 <p>Produktbild</p>
                 <div class="custom-file">
-                    <input type="file" class="custom-file-input" accept="image/jpeg, image/png" id="productImage"/>
-                    <label class="custom-file-label" for="productImage">Bild waehlen</label>
+                    <input type="file" class="custom-file-input" accept="image/jpeg, image/png" id="productImageUpdate"/>
+                    <label class="custom-file-label" for="productImageUpdate">Bild waehlen</label>
                 </div>
                 <div class="form-group">
-                    <img src="#" id="imgPreview" height="100px" width="100px" style="margin-top: 20px" alt=" ">
+                    <img src="#" id="imgPreviewUpdate" height="100px" width="100px" style="margin-top: 20px" alt=" ">
                 </div>
-                <input type="hidden" id="imgName">
-                <button type="button" id="submitProduct" class="btn btn-primary">Speichern</button>
+                <input type="hidden" id="imgNameUpdate">
+                <button type="button" id="submitProductUpdate" class="btn btn-primary">Speichern</button>
             </div>
         </div>
     </form>

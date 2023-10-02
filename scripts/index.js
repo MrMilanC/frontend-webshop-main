@@ -71,7 +71,7 @@ function displayProductsByCategory(data) {
             row += "<td>$" + product.price.toFixed(2) + "</td>";
             row += "<td>" + product.category.categoryId + "</td>";
             row += "<td>" + product.quantity + "</td>";
-            row += '<td><img src="/static/img/' + product.imageName + '" height="100px" width="100px" style="border:5px solid black"></td>';
+            row += '<td><img src="/frontend-webshop-main/img/user-files/' + product.imageName + '" height="100px" width="100px" style="border:5px solid black"></td>';
             row += "</tr>";
 
             var showProduct = $('<td>').append(

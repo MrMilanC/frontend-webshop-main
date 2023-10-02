@@ -10,9 +10,10 @@ function displayProducts(data) {
         row += "<td>" + (data.productName || "") + "</td>";
         row += "<td>" + (data.description || "") + "</td>";
         row += "<td>$" + (data.price ? data.price.toFixed(2) : "") + "</td>";
-        row += "<td>" + (data.category || "") + "</td>";
+        row += "<td>" + (data.category.categoryId || "") + "</td>";
         row += "<td>" + (data.quantity || "") + "</td>";
-        row += '<td><img src="' + (data.jpgURL || "") + '" height="100px" width="100px" style="border:5px solid black"></td>';
+        //row += '<td><img src="' + (data.jpgURL || "") + '" height="100px" width="100px" style="border:5px solid black"></td>';
+        row += '<td><img src="/frontend-webshop-main/img/user-files/' + (data.imageName || "") + '" height="100px" width="100px" style="border:5px solid black"></td>';
         row += "</tr>";
 
         productTableBody.append(row);
