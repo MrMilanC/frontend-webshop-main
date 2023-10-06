@@ -12,7 +12,7 @@ $(document).ready(function () {
                 Authorization: "Bearer " + authToken
             },
             //cors: true,
-            success: window.location.href = '../pages/admin-home.html',
+            success:  window.location.href = '../pages/admin-home.html',
             error: function (xhr, status, error) {
                 console.error(error);
             }

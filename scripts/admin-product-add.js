@@ -33,6 +33,8 @@ $('#submitProduct').click(function () {
     formData.append("productDescription", $("#description").val());
     formData.append("productQuantity", $("#quantity").val());
 
+    var authToken = sessionStorage.getItem("token");
+    console.log("AuthToken:", authToken);
 
     $.ajax({
         url: "http://localhost:8080/admin/products/add",
@@ -40,6 +42,9 @@ $('#submitProduct').click(function () {
         data: formData,
         processData: false,
         contentType: false,
+        headers: {
+            Authorization: 'Bearer ' + authToken
+        },
         success: function (response) {
             // Handle success response
         },

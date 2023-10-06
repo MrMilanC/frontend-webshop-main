@@ -13,6 +13,9 @@ function displayUsers(data) {
         row += "</tr>";
         console.log(user.id);
 
+        var authToken = sessionStorage.getItem("token");
+        console.log("AuthToken:", authToken);
+
         var deleteUser = $('<td>').append(
             $('<a>').attr('href', '#' + user.id)
                 .addClass('btn btn-danger')
@@ -25,7 +28,12 @@ function displayUsers(data) {
                         url: "http://localhost:8080/admin/users/remove/" + userId,
                         method: "DELETE",
                         dataType: "json",
-                        success: location.reload(), //console.log("Deleted"),
+                        headers: {
+                            Authorization: 'Bearer ' + authToken
+                        },
+                        success: function () {
+                            location.reload();
+                        },
                         error: function (xhr, status, error) {
                             console.error(error);
                             console.log(userId)
@@ -39,12 +47,20 @@ function displayUsers(data) {
                 .text('Update')
                 .click(function (e) {
                     e.preventDefault();
-                    var userId = user.Id;
+                    var userId = user.id;
+                    console.log(userId);
                     $.ajax({
-                        url: "http://localhost:8080/admin/users/update/"+ userId,
-                        method: "UPDATE",
+                        url: "http://localhost:8080/admin/users/view/"+ userId,
+                        method: "GET",
                         dataType: "json",
-                        success: window.location.href = "admin-user-add.html",
+                        headers: {
+                            Authorization: 'Bearer ' + authToken
+                        },
+                        success: function (data) {
+                            console.log("Update user", data);
+                            sessionStorage.setItem('updateUserId', userId);
+                            window.location.href = "admin-user-update.html";
+                        },
                         error: function (xhr, status, error) {
                             console.error(error);
                         }

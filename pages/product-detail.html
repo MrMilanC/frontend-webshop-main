@@ -23,52 +23,64 @@
     <script src="../scripts/footer-sticky.js" type="text/javascript" defer></script>
 
     <!-- Custom JavaScript -->
-    <script src="../scripts/navbar-logged-in.js" type="text/javascript" defer></script>
-    <script src="../scripts/footer.js" type="text/javascript" defer></script>
+    <!-- <script src="../scripts/navbar.js" type="text/javascript" defer></script> -->
+    <!-- <script src="../scripts/footer.js" type="text/javascript" defer></script> -->
     <script src="../scripts/product-detail.js" type="text/javascript" defer></script>
 </head>
 <body>
-<header>
+<!-- <header>
     <div id="navbar-container"></div>
-</header>
+</header> -->
 
-<!-- Table to display products -->
-<table>
-    <thead>
-    <tr>
-        <th>Produkt ID</th>
-        <th>Produktname</th>
-        <th>Beschreibung</th>
-        <th>Preis</th>
-        <th>Kategorie</th>
-        <th>Menge</th>
-        <th>Bild</th>
-    </tr>
-    </thead>
-    <tbody id="productTableBodyDetails">
-    <!-- Product rows will be added here dynamically -->
-    </tbody>
-</table>
+<div class="container">
+    <h3>Produktdetails</h3>
+    <form id="productFormDetail" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-sm-5">
+                <input type="hidden" id="idDetail" name="id">
+                <div class="form-group">
+                    <label for="nameDetail">Name</label>
+                    <input type="text" class="form-control" required id="nameDetail" placeholder="Namen eintragen">
+                </div>
+                <div class="form-group">
+                    <label for="categoryDetail">Kategorie waehlen</label>
+                    <input type="text" class="form-control" required id="categoryDetail" placeholder="Kategorie eintragen">
+                </div>
+                <div class="form-group">
+                    <label for="priceDetail">Preis</label>
+                    <input type="number" class="form-control" required id="priceDetail" placeholder="Preis">
+                </div>
+                <div class="form-group">
+                    <label for="quantityDetail">Menge</label>
+                    <input type="number" class="form-control" required id="quantityDetail" placeholder="Menge">
+                </div>
+                <div class="form-group">
+                    <label for="descriptionDetail">Produktbeschreibung</label>
+                    <textarea class="form-control" rows="5" id="descriptionDetail"></textarea>
+                </div>
+            </div>
+            <div class="col-sm-5">
 
-<div class="container mt-5">
-    <div class="row">
-        <div class="col-sm-5 d-flex justify-content-center">
-            <img class="mt-5" height="300px" width="300px" src="" alt="" id="productImage">
+                <div class="form-group">
+                    <img src="#" id="imgPreviewDetail" height="500px" width="500px" style="margin-top: 20px" alt=" ">
+                </div>
+                <input type="hidden" id="imgNameDetail">
+            </div>
         </div>
-        <div class="col-sm-7 mt-5">
-            <h2 id="productName"></h2>
-            <p id="productCategory"></p>
-            <h2>Euro: <span id="productPrice"></span></h2>
-            <h5>Produkt: <span id="productName2"></span></h5>
-            <p id="productDescription"></p>
+    </form>
+</div>
+
+
+<!-- <div class="container mt-5">
+    <div class="row">
             <a href="../pages/index.html" class="btn btn-success" id="goBacktBtn">Go Back</a>
         </div>
     </div>
-</div>
+</div> -->
 
 <tbody id="productTableBodyDetail">
 <!-- Product rows will be added here dynamically -->
 </tbody>
-<footer>
+<!-- <footer>
     <div id="footer-sticky"></div>
-</footer>
+</footer> -->

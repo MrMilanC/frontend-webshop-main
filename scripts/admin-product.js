@@ -12,6 +12,10 @@ function displayProducts(data) {
         row += "<td>" + product.quantity + "</td>";
         row += '<td><img src="/frontend-webshop-main/img/user-files/' + product.imageName + '" height="100px" width="100px" style="border:5px solid black"></td>';
         row += "</tr>";
+
+        var authToken = sessionStorage.getItem("token");
+        console.log("AuthToken:", authToken);
+
         var showProduct = $('<td>').append(
             $('<a>').attr('href', '#' + product.id)
                 .addClass('btn btn-success')
@@ -35,6 +39,7 @@ function displayProducts(data) {
                 })
         );
         var deleteProduct = $('<td>').append(
+
             $('<a>').attr('href', '#' + product.id)
                 .addClass('btn btn-danger')
                 .text('Delete')
@@ -45,7 +50,12 @@ function displayProducts(data) {
                         url: "http://localhost:8080/admin/products/remove/" + productId,
                         method: "DELETE",
                         dataType: "json",
-                        success: location.reload(), //console.log("Deleted"),
+                        headers: {
+                            Authorization: 'Bearer ' + authToken
+                        },
+                        success: function () {
+                            location.reload();
+                        },
                         error: function (xhr, status, error) {
                             console.error(error);
                         }
@@ -65,7 +75,7 @@ function displayProducts(data) {
                         dataType: "json",
                         success: function (data) {
                             console.log("Update product", data);
-                            sessionStorage.setItem('updateId', productId);
+                            sessionStorage.setItem('updateProductId', productId);
                             window.location.href = "admin-product-update.html";
                         },
                         error: function (xhr, status, error) {

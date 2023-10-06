@@ -1,4 +1,4 @@
-// Read Data
+// Read Product Data
 function displayProductForUpdate(data) {
     if (data) {
         $("#idUpdate").val(data.productId || "");
@@ -17,7 +17,7 @@ function displayProductForUpdate(data) {
 }
 
 $(document).ready(function () {
-    var dataToken = sessionStorage.getItem("updateId");
+    var dataToken = sessionStorage.getItem("updateProductId");
     console.log(dataToken);
     $.ajax({
         url: "http://localhost:8080/products/view/" + dataToken,
@@ -33,7 +33,7 @@ $(document).ready(function () {
 
 });
 
-// Update Data
+// Update Product Data
 
 function readURL(input) {
     if (input.files && input.files[0]) {
@@ -103,26 +103,3 @@ $('#submitProductUpdate').click(function () {
 });
 
 
-//
-// var updateProduct = $('<td>').append(
-//     $('<a>').attr('href', '#' + product.id)
-//         .addClass('btn btn-warning')
-//         .text('Update')
-//         .click(function (e) {
-//             e.preventDefault();
-//             var productId = product.productId;
-//             $.ajax({
-//                 url: "http://localhost:8080/admin/products/view/" + productId,
-//                 method: "UPDATE",
-//                 dataType: "json",
-//                 success: function (data) {
-//                     console.log("Update product", data);
-//                     sessionStorage.setItem('updateId', updateId);
-//                     window.location.href = "admin-product-update.html";
-//                 },
-//                 error: function (xhr, status, error) {
-//                     console.error(error);
-//                 }
-//             });
-//         })
-// );

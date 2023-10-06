@@ -32,7 +32,6 @@ anzeigenButtons.forEach((button) => {
 
         const categoryId = selectedProduct.categoryId;
         sessionStorage.setItem('categoryId', categoryId);
-        console.log("prvo " + categoryId);
 
         $(document).ready(function () {
             $.ajax({
@@ -62,8 +61,7 @@ function displayProductsByCategory(data) {
         //var categoryCompare = product.category.categoryId.toString();
 
         if (categoryCompare === categoryToken) { // Check if the product belongs to the desired category
-            console.log("ovo je token session 2" + categoryToken);
-            console.log("ovo je product 2" + product.category.categoryId);
+
             var row = "<tr>";
             row += "<td>" + product.productId + "</td>";
             row += "<td>" + product.productName + "</td>";
