@@ -1,3 +1,135 @@
+function displayProductsInCart(data) {
+    var productTableBodyCart = $("#productTableBodyCart");
+    productTableBodyCart.empty(); // Clear existing rows
+
+    data.forEach(function (product) {
+        var row = "<tr>";
+        row += "<td>" + product.productId + "</td>";
+        row += "<td>" + product.productName + "</td>";
+        row += "<td>" + product.description + "</td>";
+        row += "<td>$" + product.price.toFixed(2) + "</td>";
+        row += "<td>" + product.category.categoryId + "</td>";
+        row += "<td>" + product.quantity + "</td>";
+        row += '<td><img src="/frontend-webshop-main/img/user-files/' + product.imageName + '" height="100px" width="100px" style="border:5px solid black"></td>';
+        row += "</tr>";
+
+        var showProduct = $('<td>').append(
+            $('<a>').attr('href', '#' + product.id)
+                .addClass('btn btn-success')
+                .text('Show')
+                .click(function (e) {
+                    e.preventDefault();
+                    var productId = product.productId;
+                    $.ajax({
+                        url: "http://localhost:8080/products/view/" + productId,
+                        method: "GET",
+                        dataType: "json",
+                        success: function (data) {
+                            console.log("Show product", data);
+                            sessionStorage.setItem('productId', productId);
+                            window.location.href = "product-detail.html";
+                        },
+                        error: function (xhr, status, error) {
+                            console.error(error);
+                        }
+                    });
+                })
+        );
+
+        var cartProduct = $('<td>').append(
+            $('<a>').attr('href', '#' + product.id)
+                .addClass('btn btn-success')
+                .text('Warenkorb')
+                .click(function (e) {
+                    e.preventDefault();
+                    var productId = product.productId;
+                    $.ajax({
+                        url: "http://localhost:8080/products/view/" + productId,
+                        method: "GET",
+                        dataType: "json",
+                        success: function (data) {
+                            console.log("Show product", data);
+                            sessionStorage.setItem('productId', productId);
+                            window.location.href = "product-detail.html";
+                        },
+                        error: function (xhr, status, error) {
+                            console.error(error);
+                        }
+                    });
+                })
+        );
+        productTableBodyCart.append(row, showProduct, cartProduct);
+    });
+}
+
+$(document).ready(function () {
+
+    var authToken = sessionStorage.getItem("token");
+    console.log("AuthToken:", authToken);
+
+    var tokens = authToken.split(".");
+    var payload = JSON.parse(atob(tokens[1])); // Parse the token payload as JSON
+    var username = payload.username; // Extract the username from the payload
+    sessionStorage.setItem('usernameToken', username);
+
+    // Check if a username exists
+    // if (username) {
+    //     alert("Welcome, " + username + "!");
+    //     console.log("Username: " + username);
+    // }
+    // else {
+    //     alert("Sorry, no username found!");
+    //     console.log("No username found");
+    // }
+
+    // Function to display products in the table
+    if (authToken) {
+        $.ajax({
+            url: "http://localhost:8080/products/view",
+            method: "GET",
+            dataType: "json",
+            headers: {
+                Authorization: "Bearer " + authToken
+            },
+            //cors: true,
+            success: function (data) {
+                displayProductsInCart(data)
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+            }
+        });
+    } else {
+        // Handle the case where authToken is not found in sessionStorage
+        console.error("Authentication token not found in sessionStorage.");
+    }
+});
+
+
+
+// // A click event listener to the "Admin-Zone" link
+// document.getElementById("admin-link").addEventListener("click", function () {
+//     var tempToken = sessionStorage.getItem("token");
+//     var authToken = tempToken.split(".");
+//     var payload = JSON.parse(atob(authToken[1])); // Parse the token payload as JSON
+//
+//     var username = payload.username; // Extract the username from the payload
+//
+//     // Check if a username exists
+//     if (username) {
+//         alert("Welcome, " + username + "!");
+//         console.log("Username: " + username);
+//     } else {
+//         alert("Sorry, no username found!");
+//         console.log("No username found");
+//     }
+// });
+
+
+
+
+
+
 /* get cart total from session on load */
 updateCartTotal();
 

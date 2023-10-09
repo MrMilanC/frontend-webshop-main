@@ -1,47 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="CodeHim">
-    <title>Shopping Cart Example</title>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Biohof</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-    <!-- Style CSS -->
-    <link rel="stylesheet" href="../style/style.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+          crossorigin="anonymous"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../style/style.css"/>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script src="../scripts/navbar.js" type="text/javascript" defer></script>
     <script src="../scripts/footer-sticky.js" type="text/javascript" defer></script>
-
+    <script src="../scripts/shopping-cart.js" type="text/javascript" defer></script>
 </head>
 
 <body>
 <header>
-
+    <div id="navbar-container"></div>
 </header>
 
 <main>
-
     <div class="container">
         <h1>Biohof - Warenkorb</h1>
         <p>Wählen Sie Ihre Produkte</p>
-<br>
+        <br>
         <div id="alerts"></div>
         <div class="productcont">
-            <div class="product">
-                <h3 class="productname">Produkt 1</h3>
-                <p>Beschreibung...</p>
-                <p class="price">Euro 5.05</p>
-                <button class="addtocart">In Warenkorb</button>
-            </div>
-            <div class="product">
-                <h3 class="productname">Produkt 2</h3>
-                <p>Beschreibung...</p>
-                <p class="price">Euro 8.50</p>
-                <button class="addtocart">In Warenkorb</button>
-            </div>
-            <div class="product">
-                <h3 class="productname">Produkt 3</h3>
-                <p>Beschreibung...</p>
-                <p class="price">Euro 10.50</p>
-                <button class="addtocart">In Warenkorb</button>
+            <!-------JS fill content product list------>
+            <div class="container text-center d-flex align-items-center justify-content-center h-40">
+                <!-- Table to display products -->
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Produkt ID</th>
+                        <th>Produktname</th>
+                        <th>Beschreibung</th>
+                        <th>Preis</th>
+                        <th>Kategorie</th>
+                        <th>Menge</th>
+                        <th>Bild</th>
+                    </tr>
+                    </thead>
+                    <tbody id="productTableBodyCart">
+                    <!-- Product rows will be added here dynamically -->
+                    </tbody>
+                </table>
             </div>
         </div>
         <div class="cart-container">
@@ -70,15 +83,11 @@
             </table>
 
             <div class="cart-buttons">
-                <button id="emptycart">Warenkorb leeren</button>
-                <button id="checkout">Checkout</button>
+                <button id="emptycart">Warenkorb speichern</button>
+                <button id="checkout">Warenkorb leeren</button>
             </div>
         </div>
     </div>
-    <!-- partial -->
-
-
 </main>
-
 </body>
 </html>
