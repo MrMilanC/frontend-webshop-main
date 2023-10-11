@@ -69,39 +69,24 @@
         var username = payload.username; // Extract the username from the payload
         sessionStorage.setItem('usernameToken', username);
 
-
         var userData = {
             "userName" : sessionStorage.getItem('usernameToken'),
         };
-        console.log(username);
 
         if (authToken) {
             $.ajax({
                 url: "http://localhost:8080/cart/create/" + username,
                 method: "POST",
-                // contentType: "application/json",
-                // data: JSON.stringify(userData),
                 headers: {
                     Authorization: "Bearer " + authToken
                 },
                 success: function (response) {
-                    //window.location.href = "../pages/shopping-cart.html";
+                    window.location.href = "../pages/shopping-cart.html";
                 },
                 error: function (xhr, status, error) {
                     console.error(error);
                 }
             });
-            // var tempToken = sessionStorage.getItem("token");
-            // var tokens = tempToken.split(".");
-            // var userRole = (atob(tokens[1]));
-            //
-            // // Überprüfen, ob der Benutzer ein Administrator ist
-            // if (userRole.includes("ROLE_ADMIN")) {
-            //     window.location.href = "../pages/shopping-cart.html";
-            // } else {
-            //     alert("Sorry, du bist kein Admin!");
-            //     console.log("Kein Admin");
-            // }
         } else {
             // Handle the case where authToken is not found in sessionStorage
             console.error("Authentication token not found in sessionStorage.");

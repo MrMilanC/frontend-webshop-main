@@ -57,6 +57,8 @@
                 </table>
             </div>
         </div>
+
+
         <div class="cart-container">
             <h2>Warenkorb</h2>
             <table>
@@ -85,6 +87,32 @@
             <div class="cart-buttons">
                 <button id="emptycart">Warenkorb speichern</button>
                 <button id="checkout">Warenkorb leeren</button>
+            </div>
+
+
+            <!-- GEKAUFT -->
+
+            <div class="productcont-bought">
+                <!-------JS fill content product list------>
+                <div class="container text-center d-flex align-items-center justify-content-center h-40">
+                    <!-- Table to display products -->
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Produkt ID</th>
+                            <th>Produktname</th>
+                            <th>Beschreibung</th>
+                            <th>Preis</th>
+                            <th>Kategorie</th>
+                            <th>Menge</th>
+                            <th>Bild</th>
+                        </tr>
+                        </thead>
+                        <tbody id="productTableBodyBought">
+                        <!-- Product rows will be added here dynamically -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
