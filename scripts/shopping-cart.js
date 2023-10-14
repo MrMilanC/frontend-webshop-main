@@ -130,21 +130,10 @@ function displayProductsInCart(data) {
     var productTableBodyBought = $("#productTableBodyBought");
     productTableBodyBought.empty(); // Clear existing rows
 
-    // if (!Array.isArray(data)) {
-    //     console.error("Data is not an array:", data);
-    //     return; // Return early to prevent further processing
-    // }
-
-    // if (!data || !data.cartitems || !Array.isArray(data.cartitems)) {
-    //     console.error("Data is not in the expected format:", data);
-    //     return; // Return early to prevent further processing
-    // }
-
     if (!data || !Array.isArray(data.cartItems)) {
         console.error("Data is not in the expected format:", data);
         return; // Return early to prevent further processing
     }
-
 
     data.cartItems.forEach(function (cartItem) {
         var product = cartItem.product;
@@ -209,6 +198,33 @@ function displayProductsInCart(data) {
         productTableBodyBought.append(row, showProduct, cartProductDelete);
     });
 }
+
+//////////////////////
+// Empty Cart
+//////////////////////
+
+function emptyCart() {
+    var authToken = sessionStorage.getItem("token");
+    var tokens = authToken.split(".");
+    var payload = JSON.parse(atob(tokens[1])); // Parse the token payload as JSON
+    var userName = payload.username; // Extract the username from the payload
+    console.log(userName);
+    $.ajax({
+        url: "http://localhost:8080/cart/remove/all?userName=" + userName,
+        method: "DELETE",
+        success: function (data) {
+            location.reload();
+        },
+        error: function (xhr, status, error) {
+            console.error(error);
+        }
+    });
+
+}
+
+
+
+
 
 //
 // function updateCartTotal() {

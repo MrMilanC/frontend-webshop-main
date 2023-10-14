@@ -85,8 +85,18 @@
             </table>
 
             <div class="cart-buttons">
-                <button id="emptycart">Kaufen</button>
-                <button id="checkout">Warenkorb leeren</button>
+                <button id="buyCart">Kaufen</button>
+                <script>
+                    document.getElementById('buyCart').addEventListener('click', function() {
+                        emptyCart();
+                    });
+                </script>
+                <button id="emptycart">Warenkorb leeren</button>
+                <script>
+                    document.getElementById('emptycart').addEventListener('click', function() {
+                        emptyCart();
+                    });
+                </script>
             </div>
 
 
