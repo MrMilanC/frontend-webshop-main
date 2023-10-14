@@ -19,7 +19,7 @@ function displayUsers(data) {
         var deleteUser = $('<td>').append(
             $('<a>').attr('href', '#' + user.id)
                 .addClass('btn btn-danger')
-                .text('Delete')
+                .text('Löschen')
                 .click(function (e) {
                     e.preventDefault();
                     var userId = user.id;

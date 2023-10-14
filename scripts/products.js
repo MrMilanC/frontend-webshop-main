@@ -16,7 +16,7 @@ function displayProducts(data) {
         var showProduct = $('<td>').append(
             $('<a>').attr('href', '#' + product.id)
                 .addClass('btn btn-success')
-                .text('Show')
+                .text('Anzeigen')
                 .click(function (e) {
                     e.preventDefault();
                     var productId = product.productId;

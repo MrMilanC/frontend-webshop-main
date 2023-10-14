@@ -19,7 +19,7 @@ function displayProducts(data) {
         var showProduct = $('<td>').append(
             $('<a>').attr('href', '#' + product.id)
                 .addClass('btn btn-success')
-                .text('Show')
+                .text('Anzeigen')
                 .click(function (e) {
                     e.preventDefault();
                     var productId = product.productId;
@@ -42,7 +42,7 @@ function displayProducts(data) {
 
             $('<a>').attr('href', '#' + product.id)
                 .addClass('btn btn-danger')
-                .text('Delete')
+                .text('Löschen')
                 .click(function (e) {
                     e.preventDefault();
                     var productId = product.productId;
