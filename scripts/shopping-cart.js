@@ -42,6 +42,7 @@ $(document).ready(function () {
             //cors: true,
             success: function (data) {
                 displayProductsInCart(data)
+                updateCartTotal() //////////////////////////////////////////TOTAL
             },
             error: function (xhr, status, error) {
                 console.error(error);
@@ -59,6 +60,8 @@ function displayProductsShoppingList(data) {
     productTableBodyCart.empty(); // Clear existing rows
 
     var userName = sessionStorage.getItem("usernameTokenCart");
+    //var total = sessionStorage.getItem('cartPriceTotal');
+    var total = parseFloat(sessionStorage.getItem('cartPriceTotal')) || 0;
 
     data.forEach(function (product) {
         var row = "<tr>";
@@ -101,14 +104,29 @@ function displayProductsShoppingList(data) {
                 .click(function (e) {
                     e.preventDefault();
                     var productId = product.productId;
-                    // var priceForCart = product.price.toFixed(2);
+
+
+                    var priceForCart = product.price.toFixed(2);
+
+
+
+
                     // sessionStorage.setItem('priceForCart', priceForCart)
+                    //add price to total
+                    //total += +priceForCart;
+                    total += parseFloat(priceForCart);
+                    //sessionStorage.setItem('cartPriceTotal', total)
+                    sessionStorage.setItem('cartPriceTotal', total.toString());
+                    //update total on website HTML
+                    //document.getElementById("total").innerHTML = total.toFixed(2);
+
+
                     $.ajax({
                         url: "http://localhost:8080/cart/add/" + productId,
                         method: "POST",
                         data: {userName: userName},
                         success: function (data) {
-                           // updateCartTotal()
+                            // updateCartTotal()
                             location.reload();
                         },
                         error: function (xhr, status, error) {
@@ -135,6 +153,8 @@ function displayProductsInCart(data) {
         return; // Return early to prevent further processing
     }
 
+    var total = parseFloat(sessionStorage.getItem('cartPriceTotal')) || 0;
+
     data.cartItems.forEach(function (cartItem) {
         var product = cartItem.product;
         var row = "<tr>";
@@ -145,6 +165,7 @@ function displayProductsInCart(data) {
         row += "<td>" + product.category.categoryId + "</td>";
         //row += "<td>" + product.quantity + "</td>";
         row += '<td><img src="/frontend-webshop-main/img/user-files/' + product.imageName + '" height="100px" width="100px" style="border:5px solid black"></td>';
+        //row += "<td>" + product.quantity + "</td>";
         row += "</tr>";
 
         var showProduct = $('<td>').append(
@@ -183,6 +204,21 @@ function displayProductsInCart(data) {
                     console.log(userName);
 
                     var productId = product.productId;
+
+                    var priceForCart = product.price.toFixed(2);
+
+
+
+
+                    // sessionStorage.setItem('priceForCart', priceForCart)
+                    //add price to total
+                    //total += +priceForCart;
+                    total -= parseFloat(priceForCart);
+                    //sessionStorage.setItem('cartPriceTotal', total)
+                    sessionStorage.setItem('cartPriceTotal', total.toString());
+                    //update total on website HTML
+                    //document.getElementById("total").innerHTML = total.toFixed(2);
+
                     $.ajax({
                         url: "http://localhost:8080/cart/remove/" + productId + "?userName=" + userName,
                         method: "DELETE",
@@ -213,20 +249,25 @@ function emptyCart() {
         url: "http://localhost:8080/cart/remove/all?userName=" + userName,
         method: "DELETE",
         success: function (data) {
+            //sessionStorage.setItem('cartPriceTotal', 0);
+            sessionStorage.removeItem('cartPriceTotal');
             location.reload();
         },
         error: function (xhr, status, error) {
             console.error(error);
         }
     });
+}
 
+//////////////////////
+// Price Update
+//////////////////////
+function updateCartTotal() {
+    document.getElementById("total").innerHTML = sessionStorage.getItem('cartPriceTotal');
+    //document.getElementById("total").innerHTML = total.toFixed(2);
 }
 
 
-
-
-
-//
 // function updateCartTotal() {
 //     //init
 //     var total = 0;

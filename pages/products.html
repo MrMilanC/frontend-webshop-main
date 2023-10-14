@@ -73,6 +73,8 @@
             "userName" : sessionStorage.getItem('usernameToken'),
         };
 
+        var total = 0;
+
         if (authToken) {
             $.ajax({
                 url: "http://localhost:8080/cart/create/" + username,
@@ -81,6 +83,7 @@
                     Authorization: "Bearer " + authToken
                 },
                 success: function (response) {
+                    sessionStorage.setItem('cartPriceTotal', total)
                     window.location.href = "../pages/shopping-cart.html";
                 },
                 error: function (xhr, status, error) {
