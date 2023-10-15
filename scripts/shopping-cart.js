@@ -42,7 +42,7 @@ $(document).ready(function () {
             //cors: true,
             success: function (data) {
                 displayProductsInCart(data)
-                updateCartTotal() //////////////////////////////////////////TOTAL
+                updateCartTotal()
             },
             error: function (xhr, status, error) {
                 console.error(error);
@@ -60,7 +60,6 @@ function displayProductsShoppingList(data) {
     productTableBodyCart.empty(); // Clear existing rows
 
     var userName = sessionStorage.getItem("usernameTokenCart");
-    //var total = sessionStorage.getItem('cartPriceTotal');
     var total = parseFloat(sessionStorage.getItem('cartPriceTotal')) || 0;
 
     data.forEach(function (product) {
@@ -104,22 +103,9 @@ function displayProductsShoppingList(data) {
                 .click(function (e) {
                     e.preventDefault();
                     var productId = product.productId;
-
-
                     var priceForCart = product.price.toFixed(2);
-
-
-
-
-                    // sessionStorage.setItem('priceForCart', priceForCart)
-                    //add price to total
-                    //total += +priceForCart;
                     total += parseFloat(priceForCart);
-                    //sessionStorage.setItem('cartPriceTotal', total)
                     sessionStorage.setItem('cartPriceTotal', total.toString());
-                    //update total on website HTML
-                    //document.getElementById("total").innerHTML = total.toFixed(2);
-
 
                     $.ajax({
                         url: "http://localhost:8080/cart/add/" + productId,
@@ -154,9 +140,34 @@ function displayProductsInCart(data) {
     }
 
     var total = parseFloat(sessionStorage.getItem('cartPriceTotal')) || 0;
+    //var quantityInCart = 0;
 
-    data.cartItems.forEach(function (cartItem) {
-        var product = cartItem.product;
+    //ver 1
+    // data.cartItems.forEach(function (cartItem) {
+    //     var product = cartItem.product;
+    //
+    //     var quantityInCart = 0; // Initialize quantityInCart here
+    //     getProductQuantityForCart(product, function(quantity) {
+    //         console.log("quantity" + quantity)
+    //         quantityInCart = parseInt(quantity);
+    //         console.log("quantityInCart" + quantityInCart)
+
+    //ver 2
+    var fetchQuantityPromises = data.cartItems.map(function (cartItem) {
+        return new Promise(function (resolve, reject) {
+            getProductQuantityForCart(cartItem.product, function (quantity) {
+                resolve({ product: cartItem.product, quantity: quantity });
+            });
+        });
+    });
+
+    Promise.all(fetchQuantityPromises).then(function (results) {
+        results.forEach(function (result) {
+            var product = result.product;
+            var quantityInCart = parseInt(result.quantity);
+
+            //tabelle
+
         var row = "<tr>";
         row += "<td>" + product.productId + "</td>";
         row += "<td>" + product.productName + "</td>";
@@ -165,7 +176,7 @@ function displayProductsInCart(data) {
         row += "<td>" + product.category.categoryId + "</td>";
         //row += "<td>" + product.quantity + "</td>";
         row += '<td><img src="/frontend-webshop-main/img/user-files/' + product.imageName + '" height="100px" width="100px" style="border:5px solid black"></td>';
-        //row += "<td>" + product.quantity + "</td>";
+        row += "<td>" + quantityInCart + "</td>";   ////////////////////////////////////////  -----> MENGE
         row += "</tr>";
 
         var showProduct = $('<td>').append(
@@ -201,23 +212,11 @@ function displayProductsInCart(data) {
                     var tokens = authToken.split(".");
                     var payload = JSON.parse(atob(tokens[1])); // Parse the token payload as JSON
                     var userName = payload.username; // Extract the username from the payload
-                    console.log(userName);
 
                     var productId = product.productId;
-
                     var priceForCart = product.price.toFixed(2);
-
-
-
-
-                    // sessionStorage.setItem('priceForCart', priceForCart)
-                    //add price to total
-                    //total += +priceForCart;
                     total -= parseFloat(priceForCart);
-                    //sessionStorage.setItem('cartPriceTotal', total)
                     sessionStorage.setItem('cartPriceTotal', total.toString());
-                    //update total on website HTML
-                    //document.getElementById("total").innerHTML = total.toFixed(2);
 
                     $.ajax({
                         url: "http://localhost:8080/cart/remove/" + productId + "?userName=" + userName,
@@ -232,6 +231,7 @@ function displayProductsInCart(data) {
                 })
         );
         productTableBodyBought.append(row, showProduct, cartProductDelete);
+    });
     });
 }
 
@@ -264,149 +264,53 @@ function emptyCart() {
 //////////////////////
 function updateCartTotal() {
     document.getElementById("total").innerHTML = sessionStorage.getItem('cartPriceTotal');
-    //document.getElementById("total").innerHTML = total.toFixed(2);
 }
 
+//////////////////////
+// Get Product Quantity
+//////////////////////
 
-// function updateCartTotal() {
-//     //init
-//     var total = 0;
-//     var price = 0;
-//     price = sessionStorage.getItem('priceForCart');
-//
-//     //add price to total
-//     total += price;
-//     //update total on website HTML
-//     document.getElementById("total").innerHTML = total.toFixed(2);
-//     //insert saved products to cart table
-//     document.getElementById("carttable").innerHTML = carttable;
-//     //update items in cart on website HTML
-//     document.getElementById("itemsquantity").innerHTML = items;
-// }
+async function getProductQuantityForCart(product, callback){
+
+    var userName = sessionStorage.getItem("usernameTokenCart");
+
+    var authToken = sessionStorage.getItem("token");
+    var tokens = authToken.split(".");
+    var payload = JSON.parse(atob(tokens[1])); // Parse the token payload as JSON
+    var userName = payload.username; // Extract the username from the payload
+
+    var productId = product.productId;
+    // var priceForCart = product.price.toFixed(2);
+    // total -= parseFloat(priceForCart);
+    // sessionStorage.setItem('cartPriceTotal', total.toString());
+
+    $.ajax({
+        url: "http://localhost:8080/cart/cartitem-quantity/" + productId,
+        method: "GET",
+        data: {userName: userName},
+        success: function (data) {
+            // var quantity = data.quantity; // Assuming the returned data has a 'quantity' property
+            // callback(quantity);
+            //location.reload();
+            console.log("ovo je data" + data);
+            console.log("ovo je quantity" + data.quantity);
 
 
-// //////////////////////
-// // ANZEIGE LOGIK
-// //////////////////////
-//
-// /* get cart total from session on load */
-//
-//
-// updateCartTotal();
-//
-// /* button event listeners */
-// document.getElementById("emptycart").addEventListener("click", emptyCart);
-// var btns = document.getElementsByClassName('addtocart');
-// for (var i = 0; i < btns.length; i++) {
-//     btns[i].addEventListener('click', function() {addToCart(this);});
-// }
-//
-// /* ADD TO CART functions */
-//
-// function addToCart(elem) {
-//     //init
-//     var sibs = [];
-//     var getprice;
-//     var getproductName;
-//     var cart = [];
-//     var stringCart;
-//     //cycles siblings for product info near the add button
-//     while(elem = elem.previousSibling) {
-//         if (elem.nodeType === 3) continue; // text node
-//         if(elem.className == "price"){
-//             getprice = elem.innerText;
-//         }
-//         if (elem.className == "productname") {
-//             getproductName = elem.innerText;
-//         }
-//         sibs.push(elem);
-//     }
-//     //create product object
-//     var product = {
-//         productname : getproductName,
-//         price : getprice
-//     };
-//     //convert product data to JSON for storage
-//     var stringProduct = JSON.stringify(product);
-//     /*send product data to session storage */
-//
-//     if(!sessionStorage.getItem('cart')){
-//         //append product JSON object to cart array
-//         cart.push(stringProduct);
-//         //cart to JSON
-//         stringCart = JSON.stringify(cart);
-//         //create session storage cart item
-//         sessionStorage.setItem('cart', stringCart);
-//         addedToCart(getproductName);
-//         updateCartTotal();
-//     }
-//     else {
-//         //get existing cart data from storage and convert back into array
-//         cart = JSON.parse(sessionStorage.getItem('cart'));
-//         //append new product JSON object
-//         cart.push(stringProduct);
-//         //cart back to JSON
-//         stringCart = JSON.stringify(cart);
-//         //overwrite cart data in sessionstorage
-//         sessionStorage.setItem('cart', stringCart);
-//         addedToCart(getproductName);
-//         updateCartTotal();
-//     }
-// }
-// /* Calculate Cart Total */
-// function updateCartTotal(){
-//     //init
-//     var total = 0;
-//     var price = 0;
-//     var items = 0;
-//     var productname = "";
-//     var carttable = "";
-//     if(sessionStorage.getItem('cart')) {
-//         //get cart data & parse to array
-//         var cart = JSON.parse(sessionStorage.getItem('cart'));
-//         //get no of items in cart
-//         items = cart.length;
-//         //loop over cart array
-//         for (var i = 0; i < items; i++){
-//             //convert each JSON product in array back into object
-//             var x = JSON.parse(cart[i]);
-//             //get property value of price
-//             price = parseFloat(x.price.split('$')[1]);
-//             productname = x.productname;
-//             //add price to total
-//             carttable += "<tr><td>" + productname + "</td><td>$" + price.toFixed(2) + "</td></tr>";
-//             total += price;
-//         }
-//
-//     }
-//     //update total on website HTML
-//     document.getElementById("total").innerHTML = total.toFixed(2);
-//     //insert saved products to cart table
-//     document.getElementById("carttable").innerHTML = carttable;
-//     //update items in cart on website HTML
-//     document.getElementById("itemsquantity").innerHTML = items;
-// }
-// //user feedback on successful add
-// function addedToCart(pname) {
-//     var message = pname + " was added to the cart";
-//     var alerts = document.getElementById("alerts");
-//     alerts.innerHTML = message;
-//     if(!alerts.classList.contains("message")){
-//         alerts.classList.add("message");
-//     }
-// }
-// /* User Manually empty cart */
-// function emptyCart() {
-//     //remove cart session storage object & refresh cart totals
-//     if(sessionStorage.getItem('cart')){
-//         sessionStorage.removeItem('cart');
-//         updateCartTotal();
-//         //clear message and remove class style
-//         var alerts = document.getElementById("alerts");
-//         alerts.innerHTML = "";
-//         if(alerts.classList.contains("message")){
-//             alerts.classList.remove("message");
-//         }
-//     }
-//
-// }
+            console.log("Quantity from server:", data.quantity); // Add this line to check the value received from the server
+            //var quantity = parseInt(data.quantity);
+            var quantity = parseInt(data);
+            if (!isNaN(quantity)) {
+                callback(quantity);
+            } else {
+                console.error("Invalid quantity received from the server:", data.quantity);
+                // Handle the error case here, if necessary
+            }
+            //location.reload();
+        },
+        error: function (xhr, status, error) {
+            console.error(error);
+            //callback(0); // If there's an error, set quantity to 0
+        }
+    });
+}
+
