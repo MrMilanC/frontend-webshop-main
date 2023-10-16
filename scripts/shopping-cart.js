@@ -140,19 +140,6 @@ function displayProductsInCart(data) {
     }
 
     var total = parseFloat(sessionStorage.getItem('cartPriceTotal')) || 0;
-    //var quantityInCart = 0;
-
-    //ver 1
-    // data.cartItems.forEach(function (cartItem) {
-    //     var product = cartItem.product;
-    //
-    //     var quantityInCart = 0; // Initialize quantityInCart here
-    //     getProductQuantityForCart(product, function(quantity) {
-    //         console.log("quantity" + quantity)
-    //         quantityInCart = parseInt(quantity);
-    //         console.log("quantityInCart" + quantityInCart)
-
-    //ver 2
     var fetchQuantityPromises = data.cartItems.map(function (cartItem) {
         return new Promise(function (resolve, reject) {
             getProductQuantityForCart(cartItem.product, function (quantity) {
@@ -249,7 +236,6 @@ function emptyCart() {
         url: "http://localhost:8080/cart/remove/all?userName=" + userName,
         method: "DELETE",
         success: function (data) {
-            //sessionStorage.setItem('cartPriceTotal', 0);
             sessionStorage.removeItem('cartPriceTotal');
             location.reload();
         },
@@ -280,36 +266,21 @@ async function getProductQuantityForCart(product, callback){
     var userName = payload.username; // Extract the username from the payload
 
     var productId = product.productId;
-    // var priceForCart = product.price.toFixed(2);
-    // total -= parseFloat(priceForCart);
-    // sessionStorage.setItem('cartPriceTotal', total.toString());
 
     $.ajax({
         url: "http://localhost:8080/cart/cartitem-quantity/" + productId,
         method: "GET",
         data: {userName: userName},
         success: function (data) {
-            // var quantity = data.quantity; // Assuming the returned data has a 'quantity' property
-            // callback(quantity);
-            //location.reload();
-            console.log("ovo je data" + data);
-            console.log("ovo je quantity" + data.quantity);
-
-
-            console.log("Quantity from server:", data.quantity); // Add this line to check the value received from the server
-            //var quantity = parseInt(data.quantity);
             var quantity = parseInt(data);
             if (!isNaN(quantity)) {
                 callback(quantity);
             } else {
                 console.error("Invalid quantity received from the server:", data.quantity);
-                // Handle the error case here, if necessary
             }
-            //location.reload();
         },
         error: function (xhr, status, error) {
             console.error(error);
-            //callback(0); // If there's an error, set quantity to 0
         }
     });
 }
